@@ -1,0 +1,17 @@
+.info-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.info-wrapper h3{
+    margin: 0;
+    padding: 0;
+    color: rgb(98, 92, 92);
+    font-size: 15px;
+}
+
+.info-wrapper span{
+    color: rgb(95, 94, 94);
+    text-align: center;
+    font-size: 13px;
+}

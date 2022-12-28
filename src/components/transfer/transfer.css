@@ -1,0 +1,24 @@
+.transfer-wrapper{
+    display: flex;
+    width: 170px;
+    flex-direction: column;
+    align-self: flex-end;
+    padding-bottom: 5px;    
+}
+.transfer-title{
+    font-weight: 500;
+    color:rgb(98, 97, 97);
+    font-size: 15px;
+    text-align: center;
+}
+.transfer-logo{
+    display: flex;
+    width: 170px;
+    align-items: center;
+}
+
+.transfer-line{
+    width: 100%;
+    height: 1.7px;
+    background-color: rgb(98, 97, 97);
+}
