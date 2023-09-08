@@ -27,24 +27,67 @@
     border: unset;
     background-color: unset;
     color: rgb(70, 191, 243);
-    font-size: 13px;
+    font-size: 11px;
     cursor: pointer;
-    transition: background-color 0.3s linear;
     opacity: 0;
     pointer-events: none;
     height: 100%;
 }
-.filter-btn-only:hover{
-    background-color: rgba(125, 207, 243, 0.226);
-}
+
 .w100{
     width: 100%;
     cursor: pointer;
     height: 100%;
     line-height: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .filter-btn-wrapper:hover .filter-btn-only{
     opacity: 1;
     pointer-events:all;
+}
+
+
+.filter-checkbox{
+    opacity: 0;
+}
+
+.filter-checkbox__label{
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgb(98, 97, 97);
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.checked {
+    border: 1px solid rgb(70, 191, 243);
+
+}
+
+.gg-check {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+    color: rgb(70, 191, 243)
+}
+.gg-check::after {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    left: 3px;
+    top: -1px;
+    width: 6px;
+    height: 10px;
+    border-width: 0 2px 2px 0;
+    border-style: solid;
+    transform-origin: bottom left;
+    transform: rotate(45deg)
 }

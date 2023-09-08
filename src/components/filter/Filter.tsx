@@ -1,33 +1,31 @@
+import { FilterOptionsType } from '../../Types'
 import './Filter.css'
-const filtersBtns = [
-{name: 'Все', setting: '-1' },
-{name: 'Без пересадок', setting:'0' },
-{name: '1 пересадка', setting: '1' },
-{name: '2 пересадки', setting: '2' },
-{name: '3 пересадки', setting: '3'},
 
-]
 
-interface IFilterProps {
+
+function Filter({changeFilter, filters, options, title}: {
   changeFilter: (val:string, only?:boolean ) => void,
-  filters: string[]
-}
-
-function Filter({changeFilter, filters}: IFilterProps) {
+  filters: string[],
+  options: FilterOptionsType[],
+  title: string
+}) {
   return (
     <div className='filter-wrapper'>
-        <div className='filter-title'>Колличество пересадок</div>
+        <div className='filter-title'>{title}</div>
        
-      {filtersBtns.map(i => {
+      {options.map(i => {
         return   (
-          <div key={i.setting} className='filter-btn-wrapper'>
-              <label className='w100' htmlFor={i.setting}>
-              <input checked={filters.includes(i.setting)} onClick={() => changeFilter(i.setting)}  className='filter-checkbox' type={'checkbox'}  id={i.setting} />
-                {i.name}
+          <div key={i.id} className='filter-btn-wrapper'>
+              <label className='w100' >
+                <label className={`filter-checkbox__label ${filters.includes(i.id) && 'checked'}`} htmlFor={i.id}>
+                {filters.includes(i.id) && <i className="gg-check"></i>}
+                  <input checked={filters.includes(i.id)} onClick={() => changeFilter(i.id)}  className='filter-checkbox' type={'checkbox'}  id={i.id} />  
+                </label>
+                <span>{i.name}</span>
               </label>
               <button onClick={(e) => {
                 e.stopPropagation()
-                changeFilter(i.setting, true)}}  className='filter-btn-only'>Только</button>
+                changeFilter(i.id, true)}}  className='filter-btn-only'>ТОЛЬКО</button>
           </div>
         )
       })}

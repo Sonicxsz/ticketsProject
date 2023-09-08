@@ -11,7 +11,6 @@ function AirLineLogo() {
             viewBox="0 0 192.756 192.756"
             
           >
-          
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -31,7 +30,7 @@ function AirLineLogo() {
             clipRule="evenodd"
             fill="#cf4037"
           />
-  </svg>
+          </svg>
         </div>
 
    )

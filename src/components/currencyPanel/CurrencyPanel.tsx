@@ -1,9 +1,11 @@
 import './CurrencyPanel.css'
 import { useState } from 'react'
-const btn = ['RUB', 'USD', 'EUR']
+import cn from 'classnames'
 
-
-function CurrencyPanel() {
+function CurrencyPanel({title, options}:{
+  title:string,
+  options: string[]
+}) {
     const [activeBtn, setActiveBtn] = useState(0)
 
     const handleChangeActive = (ind:number) => {
@@ -11,13 +13,15 @@ function CurrencyPanel() {
     }
   return (
     <div className='currency-wrapper'>
-        <div className='currency-title'>Валюта</div>
+        <div className='currency-title'>{title}</div>
         <div className='currency-btns'>
-            {btn.map((i, ind) => {
-                return <button onClick={() => handleChangeActive(ind)} className={ind === activeBtn ? 'currency-btn currency-btn-active' : 'currency-btn'}>{i}</button>
-            })}
-        
-        </div>
+            {
+              options.map((i, ind) => {
+                return <button onClick={() => handleChangeActive(ind)} className={cn('currency-btn', ind === activeBtn && ' currency-btn-active')}>{i}</button>
+              })
+            }
+          </div>
+          
 
     </div>
   )

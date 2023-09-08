@@ -1,47 +1,34 @@
- const month = ['янр', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
- const days = {
-    Mon: 'ПН',
-    Tue: 'ВТ',
-    Wed: 'СР',
-    Thu: 'ЧТ',
-    Fri: 'ПТ',
-    Sat: 'СБ',
-    Sun: 'ВС' 
+import { days, mounth, stopsTitle } from "../constants/constans";
 
- }
-
-
-
-function getTransormDate (data: string) {
+export function getTransormedDate (data: string) {
     const [day, mm , yy] = data.split('.')
-   
-    const month = transformMounth(mm)
-    const year = transformYear(yy)
-    const fullDate = `${year}.${mm}.${day}`
+  
+    const month = mounth[mm as  keyof typeof mounth]
+    const year = `20${yy}`
     
-    const dayString = transformDay(fullDate);
+    const dayString = transformDay(`${year}.${mm}.${day}`);
+    const fullDate = `${day} ${month} ${year}, ${dayString}`
     return {
-        year, 
-        month,
-        day,
+        fullDate,
         dayString 
     }
-}
-
-function transformMounth(mounth:string){ 
-    return mounth[0] === '0' ? month[+mounth.slice(1) - 1] : month[+mounth - 1]
-}
-function transformYear(year:string){ 
-    return `20${year}`
 }
 
 function transformDay (date:string) {
     const day = new Date(date).toString().split(' ')[0]
 
- 
     return days[day as keyof typeof days]
-  
-   
 }
 
-export {getTransormDate}
+export function getStopsTitle (count: number) {
+    const titleByCount = stopsTitle[count] !== undefined ? stopsTitle[count] : stopsTitle[0]
+    return {
+        count,
+        titleByCount
+    }
+}
+
+
+
+
+

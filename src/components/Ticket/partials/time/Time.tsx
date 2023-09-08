@@ -1,11 +1,9 @@
 import './Time.css'
 
-interface ITimeProps{
-    time: string
-}
 
-
-function Time({time}:ITimeProps) {
+function Time({time}:{
+  time: string
+}) {
   return (
     <div className='time'>
         {time}
