@@ -1,29 +1,42 @@
 .App {
-  display: flex;
-  margin: 0 auto;
-  justify-content: center;
   gap: 50px;
-  width: 100%;
   min-height: 100vh;
-  padding-top: 50px;
+  padding: 50px 0px;
   background-color: rgb(242, 245, 251);
 }
-.filters{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: start;
-  padding: 20px 0;
-  font-display: column;
-  background-color: white;
-  height: 360px;
-  border-radius: 5px;
-  box-shadow: 0px 1px 8px rgba(89, 87, 87, 0.587);
-  box-sizing: border-box;
-}
-.tickets-wrapper{
+
+.app-tickets{
   display: flex;
   flex-direction: column;
   gap: 30px;
   width: 40%;
+}
+
+
+.loader-wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.app-logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #1c90d4;
+  margin: 0 auto 50px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+
+}
+
+.app-content{
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  gap: 50px;
 }

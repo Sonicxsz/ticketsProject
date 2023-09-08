@@ -1,12 +1,9 @@
 import './info.css'
 
-
-interface InfoProps{
-    city: string,
-    date: string
-}
-
-function Info({city, date}:InfoProps) {
+function Info({city, date}:{
+  city: string,
+  date: string
+}) {
   return (
     <div className='info-wrapper'>
         <h3>{city}</h3>

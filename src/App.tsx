@@ -1,72 +1,32 @@
-import CardTIcket from './components/cardTicket/CardTIcket';
-import { useState, useEffect } from 'react';
-import CurrencyPanel from './components/currencyPanel/CurrencyPanel';
-import Filter from './components/filter/Filter';
+import {ReactComponent as PlaneIcon} from './assets/svg/planeIcon.svg'
+import { useApp } from './useApp';
+import Loader from './components/Loader/Loader';
+import CardTIcket from './components/Ticket/CardTIcket';
 import './App.css';
-
-export interface IticketData {
-  origin: string;
-  origin_name: string;
-  destination: string;
-  destination_name: string;
-  departure_date: string;
-  departure_time: string;
-  arrival_date: string;
-  arrival_time: string;
-  carrier: string;
-  stops: number;
-  price: number;
-}
+import Filter from './components/Filter/Filter';
 
 
 
 function App() {
-  const [tickets, setTickets] = useState<[] | IticketData[]>([])
-  const [filters, setFilters] = useState<string[]>(['-1'])
+  const {filteredTicket, changeFilterOptions, filters, loading } = useApp()
 
-  const changeFilter = (val:string, only?:boolean) => {
-    if(only === true){
-      setFilters([val])
-    }else{
-      if(filters.includes(val)){
-        setFilters(state => state.filter(i => i !== val))
-      }else{
-        setFilters(state => [...state, val])
-      }
-    }
-   
-    
+  if(loading){
+    return <div className='loader-wrapper'>
+      <Loader />
+    </div>
   }
-  useEffect(() => {
-    fetch('http://localhost:8000/tickets')
-    .then(data => data.json())
-    .then((data: IticketData[]) => setTickets(data))
-
-  }, [])
-
-
-  let filteredTicket = tickets.filter(i => {
-    if(filters.includes('-1')){
-      return i
-    }
-    if(filters.includes(i.stops.toString())){
-      return i
-    }   
-  })
-
-  filteredTicket = filteredTicket.sort((a,b) => a.price - b.price)
 
   return (
     <div className="App">
-    <div className='filters'>
-      <CurrencyPanel />
-      <Filter filters={filters} changeFilter={changeFilter} />
-    </div>
-    <div className='tickets-wrapper'>
-     {filteredTicket.length > 0 && filteredTicket.map((i,ind) =>{
-      return <CardTIcket key={ind} data={i}/>
-     }) }
-    </div>
+        <div className='app-logo'>
+          <PlaneIcon fill='#fff' width={'35px'} />
+        </div>
+        <div className='app-content'>
+            <Filter  activeFilterOptions={filters} changeFilter={changeFilterOptions}/>
+              <div className='app-tickets'>
+                  {filteredTicket && filteredTicket.map((i,ind) => <CardTIcket key={ind} data={i}/>)}
+              </div>
+        </div>
     </div>
   );
 }
