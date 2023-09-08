@@ -1,12 +1,11 @@
 import './CardTicket.css'
-import AirLineLogo from '../AirLineLogo/AirLineLogo'
 import Time from './partials/time/Time'
 import Info from './partials/info/Info'
 import Transfer from './partials/transfer/Transfer'
 
 import { getStopsTitle, getTransormedDate } from '../../utils/transformsData'
-import { IticketData } from '../../Types'
-
+import { IticketData } from '../../types/Types'
+import {ReactComponent as TicketLogo} from '../../assets/svg/ticketIcon.svg'
 
 function CardTIcket({data}:{data:IticketData}) {
 
@@ -18,7 +17,9 @@ function CardTIcket({data}:{data:IticketData}) {
   return (
     <div className='card-ticket-wrapper'>
         <div className='card-ticket-first'>
-                    <AirLineLogo />
+        <div className="logo-wrapper">
+              <TicketLogo />
+        </div>
                     <button className='btn-wrapper'>
                       <p>Купить</p>
                     <span>за {data.price} ₽</span>

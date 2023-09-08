@@ -1,12 +1,28 @@
-import { useEffect, useState } from "react"
-import { IticketData } from "./Types"
+import { useCallback, useEffect, useState } from "react"
+import { IticketData } from "./types/Types"
 
 
 export const useApp = () => {
     const [tickets, setTickets] = useState<Array<IticketData>>([])
     const [filters, setFilters] = useState<string[]>(['-1'])
+    const [loading, setLoading] = useState(true)
+
+
+
+    useEffect(() => {
+      setLoading(true)
+      fetch('http://localhost:8000/tickets')
+      .then(data => data.json())
+      .then((data: IticketData[]) =>{
+        setTimeout(() => {
+          setTickets(data)
+          setLoading(false)
+       }, 1200)
+      })
   
-    const changeFilter = (val:string, only?:boolean) => {
+    }, [])
+    
+    const changeFilterOptions = useCallback((val:string, only?:boolean) => {
       if(only === true){
         setFilters([val])
       }else{
@@ -16,15 +32,7 @@ export const useApp = () => {
           setFilters(state => [...state, val])
         }
       }
-     
-      
-    }
-    useEffect(() => {
-      fetch('http://localhost:8000/tickets')
-      .then(data => data.json())
-      .then((data: IticketData[]) => setTickets(data))
-  
-    }, [])
+    }, [filters])
   
   
     let filteredTicket = tickets.filter(i => {
@@ -42,8 +50,8 @@ export const useApp = () => {
 
     return {
         filteredTicket,
-        changeFilter,
-        tickets,
-        filters
+        changeFilterOptions,  
+        filters,
+        loading
     }
 }

@@ -1,4 +1,4 @@
-export const currensyOptions = ['RUB', 'USD', 'EUR']
+export const currencyOptions = ['RUB', 'USD', 'EUR']
 
 
 export const filtersOptions = [
